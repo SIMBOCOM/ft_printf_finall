@@ -13,6 +13,8 @@ HEADER = include
 SOURCES =	ft_printf.c\
 			parsers_printf.c\
 			parsers.c\
+			long_arithmetic.c\
+			print_float.c\
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

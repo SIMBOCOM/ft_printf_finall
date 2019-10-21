@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 12:55:03 by flogan            #+#    #+#             */
-/*   Updated: 2019/10/16 20:26:25 by flogan           ###   ########.fr       */
+/*   Updated: 2019/10/21 18:54:57 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@
 # define ULL(x, y) (x == *(short*)"ll") ? (unsigned long long)y : UJ(x,y)
 # define UJ(x, y) (x == 'j') ? (intmax_t)y : UL(x, y)
 # define UL(x, y) (x == 'L') ? (uint32_t)y : T(x,y)
-
+# define MAX(a,b) a > b ? a : b
+# define SIGN(a) a >= 0 ? 0 : -a
+# define MAX_ZERO 1000
 # define T(x, y) (x == 't') ? (ptrdiff_t)y : y
 
 typedef struct			s_arg
@@ -54,6 +56,19 @@ typedef struct			s_arg
 	unsigned			sign: 1;
 	unsigned			malloc: 1;
 }						t_arg;
+typedef struct	s_vector
+{
+	int		array[550];
+	int		size;
+}				t_vector;
+typedef struct  s_doub_float_e
+{
+	t_vector		whole_part;
+	t_vector		fraction_part;
+	long long		number_zero;
+	int				power;
+	int				sign;
+}               t_doub_float_e;
 char					*ft_itoa_bases(unsigned long long uvalue,
 		long long value, t_arg *arg);
 void					parser(char **format, t_arg *arg, va_list args, int *j);
@@ -63,4 +78,12 @@ void					print_string(t_arg *arg);
 void					print_char(t_arg *arg, va_list args);
 void					parser_width(char **format, t_arg *arg, va_list args,
 		int *j);
+int		ft_printf(char *str, ...);
+void	mult_long_to_short(t_vector *a, int b);
+char	*print_float(float a, t_arg *arg);
+char	*print_double(double a, t_arg *arg);
+void	sum_long_to_short(t_vector *a, int b);
+void	sum_long_to_long(t_vector *a, t_vector b);
+char    *print_long_double(long double a, t_arg *arg);
+
 #endif

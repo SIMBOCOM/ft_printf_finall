@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:03:42 by flogan            #+#    #+#             */
-/*   Updated: 2019/10/16 20:53:24 by flogan           ###   ########.fr       */
+/*   Updated: 2019/10/21 22:45:24 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,20 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 				arg->type) && (++(*size)))
 		*sign = '+';
 	*size += hash + (arg->hash && ft_strchr("xXp", arg->type));
+	if (*sign && arg->type == 'f' && arg->zero)
+	{
+		ft_putchar(*sign);
+		arg->sign = 1;
+		*sign = 0;
+	}
+	// printf("%d = %d = %zu\n", arg->width, *size, ft_strlen(arg->s));
+	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign + arg->space && (--(arg->width)) && (++(arg->counter)))
+		ft_putchar('0');
 	arg->counter += *size += (arg->acc_flag && arg->accuracy >
 			ft_strlen(arg->s)) ? arg->accuracy : ft_strlen(arg->s);
-	if (arg->space && arg->type && ft_strchr("difFeEgG", arg->type) &&
+	if ((arg->space && arg->type && ft_strchr("difFeEgG", arg->type) &&
 			*sign == 0 && (!arg->width || arg->width > ft_strlen(arg->s))
-			&& (++(arg->counter)) && (*size)++)
+	&& (++(arg->counter)) && (*size)++) || (arg->space && arg->type == 'f' && *sign == 0))
 		ft_putchar(' ');
 	while (!arg->minus && (!arg->zero || (arg->width > arg->accuracy &&
 	arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
@@ -58,7 +67,7 @@ void	print_numbers(t_arg *arg)
 		ft_putchar('0');
 	while (arg->accuracy > (ft_strlen(arg->s)) && (--(arg->accuracy)))
 		ft_putchar('0');
-	if (arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0)
+	if (arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f')
 	{
 		if (arg->width)
 			ft_putchar(' ');

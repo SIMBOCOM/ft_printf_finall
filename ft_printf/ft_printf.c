@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:38:01 by flogan            #+#    #+#             */
-/*   Updated: 2019/10/16 20:49:28 by flogan           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:18:02 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	parser(char **format, t_arg *arg, va_list args, int *j)
 	parser_width(format, arg, args, j);
 	if (arg->type)
 	{
-		if (ft_strchr("diouxXp", arg->type))
+		if (ft_strchr("diouxXfp", arg->type))
 			print_numbers(arg);
-		else if (ft_strchr("s", arg->type))
+		if (ft_strchr("s", arg->type))
 			print_string(arg);
 	}
 	else if (!arg->s && (*format)[*j] && (arg->malloc = 1))

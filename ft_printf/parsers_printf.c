@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   parsers_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:02:37 by flogan            #+#    #+#             */
-/*   Updated: 2019/10/16 18:16:52 by flogan           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:23:44 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+char	*print_fd(t_arg *arg, va_list args)
+{
+	if (!arg->accuracy && !arg->acc_flag)
+		arg->accuracy = 6;
+	if (arg->spec == 'L')
+		return (print_long_double((long double)va_arg(args, long double), arg));
+	if (arg->spec == 'l')
+		return (print_double((double)va_arg(args, double), arg));
+	return (print_double((double)va_arg(args, double), arg));
+} 
 
 void	flags(char **format, t_arg *arg, int *j)
 {
@@ -46,6 +57,8 @@ void	parser_type(char **format, t_arg *arg, va_list args, int *j)
 			(arg->s) = va_arg(args, char*);
 		else if (ft_strchr("p", arg->type) && (arg->hash = 1))
 			arg->s = ft_itoa_bases(va_arg(args, unsigned long long), 0, arg);
+		else if (ft_strchr("f", arg->type))
+			arg->s = print_fd(arg, args);
 		else
 			arg->s = ft_itoa_bases(0, va_arg(args, int), arg);
 	}
