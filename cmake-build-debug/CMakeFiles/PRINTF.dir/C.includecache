@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/flogan/PROJECT/PRINTF/ft_printf.c
+header.h
+/Users/flogan/PROJECT/PRINTF/header.h
+
+/Users/flogan/PROJECT/PRINTF/header.h
+libft/libft.h
+/Users/flogan/PROJECT/PRINTF/libft/libft.h
+stddef.h
+-
+stdarg.h
+-
+stdlib.h
+-
+stdio.h
+-
+limits.h
+-
+
+/Users/flogan/PROJECT/PRINTF/libft/libft.h
+string.h
+-
+unistd.h
+-
+stdlib.h
+-
+
+/Users/flogan/PROJECT/PRINTF/parsers.c
+header.h
+/Users/flogan/PROJECT/PRINTF/header.h
+
+/Users/flogan/PROJECT/PRINTF/parsers_printf.c
+header.h
+/Users/flogan/PROJECT/PRINTF/header.h
+
