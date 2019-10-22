@@ -16,8 +16,14 @@ int main()
 	// double d = 2345.23452345;
 	// long double ld = LDBL_MAX;
 	// float f = -37.0777779;
-	printf("%Lf\n", 7.5l);
-	ft_printf("%Lf", 7.5l);
+	printf("% 05.0f\n", 7.3);
+	ft_printf("% 05.0f\n\n", 7.3);
+    printf("%05.1f\n", 7.3);
+    ft_printf("%05.1f\n\n", 7.3);
+    printf("%5.0f\n", 7.3);
+    ft_printf("%5.0f\n\n", 7.3);
+    printf("% 5.0f\n", 7.3);
+    ft_printf("% 5.0f\n\n", 7.3);
 	// ft_printf("%40.20f\n", f);
 	// printf("%40.20lf\n", d);
 	// ft_printf("%40.20lf\n", d);

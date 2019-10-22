@@ -58,7 +58,7 @@ void	parser_type(char **format, t_arg *arg, va_list args, int *j)
 		else if (ft_strchr("p", arg->type) && (arg->hash = 1))
 			arg->s = ft_itoa_bases(va_arg(args, unsigned long long), 0, arg);
 		else if (ft_strchr("f", arg->type))
-			arg->s = print_fd(arg, args);
+            arg->s = print_fd(arg, args);
 		else
 			arg->s = ft_itoa_bases(0, va_arg(args, int), arg);
 	}

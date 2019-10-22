@@ -38,6 +38,7 @@
 # define SIGN(a) a >= 0 ? 0 : -a
 # define MAX_ZERO 1000
 # define T(x, y) (x == 't') ? (ptrdiff_t)y : y
+# define MAX_SIZE_ARRAY 500
 
 typedef struct			s_arg
 {
@@ -58,7 +59,7 @@ typedef struct			s_arg
 }						t_arg;
 typedef struct	s_vector
 {
-	int		array[550];
+	int		array[MAX_SIZE_ARRAY];
 	int		size;
 }				t_vector;
 typedef struct  s_doub_float_e

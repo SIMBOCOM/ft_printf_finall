@@ -21,22 +21,26 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 				arg->type) && (++(*size)))
 		*sign = '+';
 	*size += hash + (arg->hash && ft_strchr("xXp", arg->type));
+    if (!*sign && arg->type == 'f' && arg->space)
+    {
+        ft_putchar(' ');
+        arg->width--;
+    }
 	if (*sign && arg->type == 'f' && arg->zero)
 	{
 		ft_putchar(*sign);
 		arg->sign = 1;
 		*sign = 0;
 	}
-	// printf("%d = %d = %zu\n", arg->width, *size, ft_strlen(arg->s));
-	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign + arg->space && (--(arg->width)) && (++(arg->counter)))
+	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign && (--(arg->width)) && (++(arg->counter)))
 		ft_putchar('0');
 	arg->counter += *size += (arg->acc_flag && arg->accuracy >
 			ft_strlen(arg->s)) ? arg->accuracy : ft_strlen(arg->s);
-	if ((arg->space && arg->type && ft_strchr("difFeEgG", arg->type) &&
+	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) &&
 			*sign == 0 && (!arg->width || arg->width > ft_strlen(arg->s))
-	&& (++(arg->counter)) && (*size)++) || (arg->space && arg->type == 'f' && *sign == 0))
+	&& (++(arg->counter)) && (*size)++))
 		ft_putchar(' ');
-	while (!arg->minus && (!arg->zero || (arg->width > arg->accuracy &&
+	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy &&
 	arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
 		ft_putchar(' ');
 	if (hash && arg->type == 'o' && !arg->accuracy && (ft_strcmp(arg->s, "0") ||

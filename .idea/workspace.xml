@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="PRINTF" targetName="PRINTF" />
+      <config projectName="PTF22_10" targetName="PTF22_10" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -11,7 +11,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08901966-8c43-4c01-8d81-330a4fda66b0" name="Default Changelist" comment="" />
+    <list default="true" id="08901966-8c43-4c01-8d81-330a4fda66b0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_printf/parsers.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/parsers.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_printf/parsers_printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/parsers_printf.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_printf/print_float.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/print_float.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/header.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libftprintf.a" beforeDir="false" afterPath="$PROJECT_DIR$/libftprintf.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temporary/long_arithmetic.o" beforeDir="false" afterPath="$PROJECT_DIR$/temporary/long_arithmetic.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temporary/parsers.o" beforeDir="false" afterPath="$PROJECT_DIR$/temporary/parsers.o" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +35,16 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1RVV1He2AqFfbU77Pfmy4QdzWyN" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -41,7 +59,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="PRINTF" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PRINTF" TARGET_NAME="PRINTF" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PRINTF" RUN_TARGET_NAME="PRINTF">
+    <configuration name="PTF22_10" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PTF22_10" TARGET_NAME="PTF22_10" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PTF22_10" RUN_TARGET_NAME="PTF22_10">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -91,10 +109,27 @@
       <workItem from="1571151069206" duration="15093000" />
       <workItem from="1571219694825" duration="15473000" />
       <workItem from="1571312489669" duration="98000" />
+      <workItem from="1571741173087" duration="48000" />
+      <workItem from="1571741222709" duration="2411000" />
+      <workItem from="1571743671599" duration="92000" />
+      <workItem from="1571743764133" duration="3157000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

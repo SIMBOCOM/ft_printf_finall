@@ -193,7 +193,7 @@ char	*convert_to_str(t_doub_float_e *number,  t_arg *arg)
 
 char		*print_double(double a, t_arg *arg)
 {
-	
+
 	t_doub_float_e	number;
 	__uint128_t		*b;
 	int				i;

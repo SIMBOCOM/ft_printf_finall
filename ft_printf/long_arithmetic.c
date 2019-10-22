@@ -19,6 +19,8 @@ void	sum_long_to_long(t_vector *a, t_vector b)
 	{
 		if (a->size == i)
 		{
+		    if (a->size >= MAX_SIZE_ARRAY)
+                return ;
 			a->size++;
 			a->array[i] = 0;
 		}
@@ -51,6 +53,8 @@ void	sum_long_to_short(t_vector *a, int b)
 	{
 		if (a->size == i)
 		{
+            if (a->size >= MAX_SIZE_ARRAY)
+                return ;
 			a->size++;
 			a->array[i] = 0;
 		}
@@ -81,6 +85,8 @@ void	mult_long_to_short(t_vector *a, int b)
 	{
 		if (i == a->size)
 		{
+            if (a->size >= MAX_SIZE_ARRAY)
+                return ;
 			a->size++;
 			a->array[i] = 0;
 		}

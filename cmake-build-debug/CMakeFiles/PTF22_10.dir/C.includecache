@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/flogan/Desktop/PTF22.10/include/header.h
+../libft/libft.h
+/Users/flogan/Desktop/PTF22.10/libft/libft.h
+stddef.h
+-
+stdarg.h
+-
+stdlib.h
+-
+stdio.h
+-
+limits.h
+-
+
+/Users/flogan/Desktop/PTF22.10/libft/libft.h
+string.h
+-
+unistd.h
+-
+stdlib.h
+-
+
+/Users/flogan/Desktop/PTF22.10/main.c
+include/header.h
+/Users/flogan/Desktop/PTF22.10/include/header.h
+stdio.h
+-
+float.h
+-
+limits.h
+-
+stdint.h
+-
+stdlib.h
+-
+stdarg.h
+-
+
