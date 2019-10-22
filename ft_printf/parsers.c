@@ -13,14 +13,17 @@
 #include "header.h"
 
 void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
-		int hash)
+		int *hash)
 {
 	if (arg->sign && (++(*size)))
 		*sign = '-';
-	else if (!arg->sign && arg->plus && arg->type && ft_strchr("difFeEgG",
-				arg->type) && (++(*size)))
+	else if (!arg->sign && arg->plus && arg->type && ft_strchr("difFeEgG", arg->type)  && !(arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f') && (++(*size)))
 		*sign = '+';
-	*size += hash + (arg->hash && ft_strchr("xXp", arg->type));
+	if (arg->type == 'p')
+	    *hash = 1;
+	*size += *hash += (*hash && arg->hash && ft_strchr("xXp", arg->type));
+    //printf("d=   %d", *size);
+    //printf("d=   %d", ft_strcmp(arg->s, "0"));
     if (!*sign && arg->type == 'f' && arg->space)
     {
         ft_putchar(' ');
@@ -32,38 +35,37 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 		arg->sign = 1;
 		*sign = 0;
 	}
+	if (arg->type == 'o' && *hash && arg->accuracy > ft_strlen(arg->s))
+	    arg->width++;
 	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign && (--(arg->width)) && (++(arg->counter)))
 		ft_putchar('0');
-	arg->counter += *size += (arg->acc_flag && arg->accuracy >
-			ft_strlen(arg->s)) ? arg->accuracy : ft_strlen(arg->s);
-	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) &&
-			*sign == 0 && (!arg->width || arg->width > ft_strlen(arg->s))
-	&& (++(arg->counter)) && (*size)++))
+	arg->counter += *size += (arg->acc_flag && arg->accuracy > ft_strlen(arg->s)) ? arg->accuracy : ft_strlen(arg->s);
+    //printf("d=   %d", arg->width);
+	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) && *sign == 0 && (!arg->width || arg->width > ft_strlen(arg->s) || ft_strchr("di", arg->type)) && (++(arg->counter)) && (*size)++))
 		ft_putchar(' ');
-	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy &&
-	arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
+	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
 		ft_putchar(' ');
-	if (hash && arg->type == 'o' && !arg->accuracy && (ft_strcmp(arg->s, "0") ||
-	(arg->acc_flag || arg->width)))
+	if (*hash && arg->type == 'o' && (!arg->accuracy || arg->accuracy-- ))
 		ft_putchar('0');
-	else if (hash && ((arg->type == 'x' && ft_strcmp(arg->s, "0"))
-				|| arg->type == 'p'))
-		ft_putstr("0x");
-	else if (hash && arg->type == 'X' && ft_strcmp(arg->s, "0"))
-		ft_putstr("0X");
-	else if (hash)
-		arg->counter -= (arg->type == 'o') ? 1 : 2;
+    else if (*hash && ((arg->type == 'x' && ft_strcmp(arg->s, "0")) || arg->type == 'p'))
+        ft_putstr("0x");
+    else if (*hash && arg->type == 'X' && ft_strcmp(arg->s, "0"))
+        ft_putstr("0X");
+    else if (*hash)
+        arg->counter -= (arg->type == 'o') ? 1 : 2;
 }
 
 void	print_numbers(t_arg *arg)
 {
 	unsigned int		size;
 	char				sign;
+    int hash;
 
 	size = 0;
 	sign = 0;
-	apendix_print_numbers(arg, &size, &sign, (arg->hash &&
-	ft_strchr("oxXp", arg->type)));
+    //printf("h=   %d", ft_strcmp(arg->s, "0"));
+    hash = (arg->hash && ft_strchr("oxXp", arg->type) && ft_strcmp(arg->s, "0"));
+	apendix_print_numbers(arg, &size, &sign, &hash);
 	if (sign)
 		ft_putchar(sign);
 	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
@@ -73,7 +75,11 @@ void	print_numbers(t_arg *arg)
 		ft_putchar('0');
 	if (arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f')
 	{
-		if (arg->width)
+        if (arg->plus)
+            ft_putchar('+');
+        else if (arg->type == 'o' && arg->hash)
+            ft_putchar('0');
+		else if (arg->width)
 			ft_putchar(' ');
 		else
 			--(arg->counter);

@@ -24,6 +24,16 @@ int main()
     ft_printf("%5.0f\n\n", 7.3);
     printf("% 5.0f\n", 7.3);
     ft_printf("% 5.0f\n\n", 7.3);
+    printf("%+5.0d\n", 0);
+    ft_printf("%+5.0d\n\n", 0);
+    printf("%#3x\n", 0);
+    ft_printf("%#3x\n\n", 0);
+    printf("%#.5o\n", 21);
+    ft_printf("%#.5o\n\n", 21);
+    printf("%#.5o\n", 21);
+    ft_printf("%#.5o\n\n", 21);
+    printf("%#8.5o\n", 34);
+    ft_printf("%#8.5o", 34);
 	// ft_printf("%40.20f\n", f);
 	// printf("%40.20lf\n", d);
 	// ft_printf("%40.20lf\n", d);

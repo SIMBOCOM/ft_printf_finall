@@ -12,17 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08901966-8c43-4c01-8d81-330a4fda66b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ft_printf/parsers.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/parsers.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ft_printf/parsers_printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/parsers_printf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ft_printf/print_float.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/print_float.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/header.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/header.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libftprintf.a" beforeDir="false" afterPath="$PROJECT_DIR$/libftprintf.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temporary/long_arithmetic.o" beforeDir="false" afterPath="$PROJECT_DIR$/temporary/long_arithmetic.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/temporary/parsers.o" beforeDir="false" afterPath="$PROJECT_DIR$/temporary/parsers.o" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,6 +108,7 @@
       <workItem from="1571741222709" duration="2411000" />
       <workItem from="1571743671599" duration="92000" />
       <workItem from="1571743764133" duration="3157000" />
+      <workItem from="1571747448854" duration="19457000" />
     </task>
     <servers />
   </component>
