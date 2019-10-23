@@ -32,8 +32,26 @@ int main()
     ft_printf("%#.5o\n\n", 21);
     printf("%#.5o\n", 21);
     ft_printf("%#.5o\n\n", 21);
-    printf("%#8.5o\n", 34);
-    ft_printf("%#8.5o", 34);
+    printf("%d",printf("{%.*d}", -5, 42));
+    printf("\n");
+    printf("%d",ft_printf("{%.*d}", -5, 42));
+    printf("\n");
+    printf("%d",printf("{%.*s}", -5, "42"));
+    printf("\n");
+    printf("%d",ft_printf("{%.*s}", -5, "42"));
+    printf("\n");
+    printf("%d",printf("{%*d}", -5, 42));
+    printf("\n");
+    printf("%d",ft_printf("{%*d}", -5, 42));
+    printf("\n");
+    printf("%d",printf("{%*c}", -15, 0));
+    printf("\n");
+    printf("%d",ft_printf("{%*c}", -15, 0));
+    printf("\n");
+    printf("%d",printf("{%05.*d}", -15, 42));
+    printf("\n");
+    printf("%d",ft_printf("{%05.*d}", -15, 42));
+
 	// ft_printf("%40.20f\n", f);
 	// printf("%40.20lf\n", d);
 	// ft_printf("%40.20lf\n", d);

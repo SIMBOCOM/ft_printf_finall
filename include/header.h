@@ -56,6 +56,7 @@ typedef struct			s_arg
 	unsigned			type: 8;
 	unsigned			sign: 1;
 	unsigned			malloc: 1;
+    unsigned			acminus: 1;
 }						t_arg;
 typedef struct	s_vector
 {

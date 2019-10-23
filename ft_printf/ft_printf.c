@@ -20,6 +20,8 @@ void	parser(char **format, t_arg *arg, va_list args, int *j)
 	parser_width(format, arg, args, j);
 	if (arg->type)
 	{
+	    if (arg->type != 's' && arg->acminus == 1 && (arg->acc_flag--))
+	        arg->accuracy = 0;
 		if (ft_strchr("diouxXfp", arg->type))
 			print_numbers(arg);
 		if (ft_strchr("s", arg->type))

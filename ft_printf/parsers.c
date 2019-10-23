@@ -12,9 +12,25 @@
 
 #include "header.h"
 
+void    print_zero(long len, char chr)
+{
+    long i;
+
+    i = 0;
+    char *ptr;
+    ptr = malloc(sizeof(char) * (len + 1));
+    while (i < len)
+        ptr[i++] = chr;
+    write (1, ptr, len);
+    free(ptr);
+}
+
 void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 		int *hash)
 {
+    long len;
+
+    len = ft_strlen(arg->s);
 	if (arg->sign && (++(*size)))
 		*sign = '-';
 	else if (!arg->sign && arg->plus && arg->type && ft_strchr("difFeEgG", arg->type)  && !(arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f') && (++(*size)))
@@ -22,8 +38,6 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 	if (arg->type == 'p')
 	    *hash = 1;
 	*size += *hash += (*hash && arg->hash && ft_strchr("xXp", arg->type));
-    //printf("d=   %d", *size);
-    //printf("d=   %d", ft_strcmp(arg->s, "0"));
     if (!*sign && arg->type == 'f' && arg->space)
     {
         ft_putchar(' ');
@@ -35,16 +49,34 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
 		arg->sign = 1;
 		*sign = 0;
 	}
-	if (arg->type == 'o' && *hash && arg->accuracy > ft_strlen(arg->s))
-	    arg->width++;
-	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign && (--(arg->width)) && (++(arg->counter)))
-		ft_putchar('0');
-	arg->counter += *size += (arg->acc_flag && arg->accuracy > ft_strlen(arg->s)) ? arg->accuracy : ft_strlen(arg->s);
-    //printf("d=   %d", arg->width);
-	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) && *sign == 0 && (!arg->width || arg->width > ft_strlen(arg->s) || ft_strchr("di", arg->type)) && (++(arg->counter)) && (*size)++))
+	if (arg->type == 'o' && *hash && arg->accuracy > len)
+    {
+        arg->counter--;
+        arg->width++;
+    }
+	//____________________________________________
+//	while (!arg->minus && arg->zero && arg->type == 'f' && arg->width > ft_strlen(arg->s) + arg->sign && (--(arg->width)) && (++(arg->counter)))
+//		ft_putchar('0');
+    if (!arg->minus && arg->zero && arg->type == 'f' && arg->width > len + arg->sign)
+    {
+        print_zero(arg->width - (len + arg->sign), '0');
+        arg->width -= (len + arg->sign);
+        arg->counter += (len + arg->sign);
+    }
+    //__________________________________________-
+	arg->counter += *size += (arg->acc_flag && arg->accuracy > len) ? arg->accuracy : len;
+	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) && *sign == 0 && (!arg->width || arg->width > len|| ft_strchr("di", arg->type)) && (++(arg->counter)) && (*size)++))
 		ft_putchar(' ');
+	//_______________________
 	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
 		ft_putchar(' ');
+//    if ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size)
+//    {
+//        print_zero(arg->width - *size, ' ');
+//        arg->width -= *size;
+//        arg->counter += *size;
+//    }
+	//_____________________________
 	if (*hash && arg->type == 'o' && (!arg->accuracy || arg->accuracy-- ))
 		ft_putchar('0');
     else if (*hash && ((arg->type == 'x' && ft_strcmp(arg->s, "0")) || arg->type == 'p'))
@@ -60,10 +92,11 @@ void	print_numbers(t_arg *arg)
 	unsigned int		size;
 	char				sign;
     int hash;
+    long len;
 
 	size = 0;
 	sign = 0;
-    //printf("h=   %d", ft_strcmp(arg->s, "0"));
+	len = ft_strlen(arg->s);
     hash = (arg->hash && ft_strchr("oxXp", arg->type) && ft_strcmp(arg->s, "0"));
 	apendix_print_numbers(arg, &size, &sign, &hash);
 	if (sign)
@@ -71,7 +104,7 @@ void	print_numbers(t_arg *arg)
 	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
 		&& arg->width > size && (--(arg->width)) && (++(arg->counter)))
 		ft_putchar('0');
-	while (arg->accuracy > (ft_strlen(arg->s)) && (--(arg->accuracy)))
+	while (arg->accuracy > len && (--(arg->accuracy)))
 		ft_putchar('0');
 	if (arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f')
 	{
@@ -85,7 +118,7 @@ void	print_numbers(t_arg *arg)
 			--(arg->counter);
 	}
 	else
-		write(1, arg->s, ft_strlen(arg->s));
+		write(1, arg->s, len);
 	while (arg->minus && arg->width > size && arg->width-- && (++arg->counter))
 		ft_putchar(' ');
 }

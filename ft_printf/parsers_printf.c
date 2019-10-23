@@ -88,13 +88,17 @@ void	parser_spec(char **format, t_arg *arg, va_list args, int *j)
 
 void	parser_accuracy(char **format, t_arg *arg, va_list args, int *j)
 {
+    int i;
 	if ((*format)[*j] && ft_strchr(".", (*format)[*j]))
 	{
 		arg->acc_flag = 1;
 		(*j)++;
 		if ((*format)[*j] && (*format)[*j] == '*')
 		{
-			arg->accuracy = va_arg(args, long long);
+            i = va_arg(args, int);
+            if (i < 0 && (arg->acminus = 1))
+                i *= -1;
+			arg->accuracy = i;
 			(*j)++;
 		}
 		while ((*format)[*j] && ft_strchr("0123456789", (*format)[*j]))
@@ -108,11 +112,15 @@ void	parser_accuracy(char **format, t_arg *arg, va_list args, int *j)
 
 void	parser_width(char **format, t_arg *arg, va_list args, int *j)
 {
+    int i;
 	(*j)++;
 	flags(format, arg, j);
 	if ((*format)[*j] && (*format)[*j] == '*')
 	{
-		arg->width = va_arg(args, long long);
+	    i = va_arg(args, int);
+	    if (i < 0 && (arg->minus = 1))
+	        i *= -1;
+		arg->width = i;
 		(*j)++;
 	}
 	if ((*format)[*j] && ft_strchr("0123456789", (*format)[*j]))
