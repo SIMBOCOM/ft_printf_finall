@@ -12,10 +12,16 @@
 
 #include "header.h"
 
+int     none(t_arg *arg)
+{
+    if(arg->plus || arg->space || arg->minus || arg->hash || arg->zero || arg->acc_flag || arg->width || arg->accuracy || arg->sign)
+        return (0);
+    return (1);
+}
+
 void    print_zero(long len, char chr)
 {
     long i;
-
     i = 0;
     char *ptr;
     ptr = malloc(sizeof(char) * (len + 1));
@@ -60,22 +66,22 @@ void	apendix_print_numbers(t_arg *arg, unsigned int *size, char *sign,
     if (!arg->minus && arg->zero && arg->type == 'f' && arg->width > len + arg->sign)
     {
         print_zero(arg->width - (len + arg->sign), '0');
-        arg->width -= (len + arg->sign);
-        arg->counter += (len + arg->sign);
+        arg->counter += (arg->width - (len + arg->sign));
+        arg->width -= (arg->width - (len + arg->sign));
     }
     //__________________________________________-
 	arg->counter += *size += (arg->acc_flag && arg->accuracy > len) ? arg->accuracy : len;
 	if ((arg->space && arg->type && ft_strchr("dieEgG", arg->type) && *sign == 0 && (!arg->width || arg->width > len|| ft_strchr("di", arg->type)) && (++(arg->counter)) && (*size)++))
 		ft_putchar(' ');
 	//_______________________
-	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
-		ft_putchar(' ');
-//    if ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size)
-//    {
-//        print_zero(arg->width - *size, ' ');
-//        arg->width -= *size;
-//        arg->counter += *size;
-//    }
+//	while ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size && arg->width-- && (++(arg->counter)))
+//		ft_putchar(' ');
+    if ((arg->type != 'f' || (!arg->zero && arg->type == 'f')) && !arg->minus && (!arg->zero || (arg->width > arg->accuracy && arg->acc_flag)) && arg->width > *size)
+    {
+        print_zero(arg->width - *size, ' ');
+        arg->counter += (arg->width - *size);
+        arg->width -= (arg->width - *size);
+    }
 	//_____________________________
 	if (*hash && arg->type == 'o' && (!arg->accuracy || arg->accuracy-- ))
 		ft_putchar('0');
@@ -101,11 +107,26 @@ void	print_numbers(t_arg *arg)
 	apendix_print_numbers(arg, &size, &sign, &hash);
 	if (sign)
 		ft_putchar(sign);
-	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
-		&& arg->width > size && (--(arg->width)) && (++(arg->counter)))
-		ft_putchar('0');
-	while (arg->accuracy > len && (--(arg->accuracy)))
-		ft_putchar('0');
+//___________________________________________
+//	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
+//		&& arg->width > size && (--(arg->width)) && (++(arg->counter)))
+//		ft_putchar('0');
+    if (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy) && arg->width > size)
+    {
+        print_zero(arg->width - size, '0');
+        arg->counter += (arg->width - size);
+        arg->width -= (arg->width - size);
+    }
+	//____________________________________________
+	//_________________________
+//	while (arg->accuracy > len && (--(arg->accuracy)))
+//		ft_putchar('0');
+    if (arg->accuracy > len)
+    {
+        print_zero(arg->accuracy - len, '0');
+        arg->accuracy = (arg->accuracy - len);
+    }
+	//_________________________________________
 	if (arg->acc_flag && !ft_strcmp(arg->s, "0") && arg->accuracy == 0 && arg->type != 'f')
 	{
         if (arg->plus)
@@ -119,8 +140,16 @@ void	print_numbers(t_arg *arg)
 	}
 	else
 		write(1, arg->s, len);
-	while (arg->minus && arg->width > size && arg->width-- && (++arg->counter))
-		ft_putchar(' ');
+	//_____________________________
+//	while (arg->minus && arg->width > size && arg->width-- && (++arg->counter))
+//		ft_putchar(' ');
+    if (arg->minus && arg->width > size)
+    {
+        print_zero(arg->width - size, ' ');
+        arg->counter += (arg->width - size);
+        arg->width -= (arg->width - size);
+    }
+	//_______________________________
 }
 
 void	parse_string(char **str, int *j, t_arg *arg)

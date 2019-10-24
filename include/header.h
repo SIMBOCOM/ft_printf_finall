@@ -87,5 +87,6 @@ char	*print_double(double a, t_arg *arg);
 void	sum_long_to_short(t_vector *a, int b);
 void	sum_long_to_long(t_vector *a, t_vector b);
 char    *print_long_double(long double a, t_arg *arg);
+int     none(t_arg *arg);
 
 #endif

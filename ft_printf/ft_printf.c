@@ -18,7 +18,9 @@ void	parser(char **format, t_arg *arg, va_list args, int *j)
 
 	i = 0;
 	parser_width(format, arg, args, j);
-	if (arg->type)
+    if (arg->type && !ft_strchr("csS", arg->type) && none(arg) && (write(1, arg->s, ft_strlen(arg->s))))
+        arg->counter = ft_strlen(arg->s);
+	else if (arg->type)
 	{
 	    if (arg->type != 's' && arg->acminus == 1 && (arg->acc_flag--))
 	        arg->accuracy = 0;
@@ -44,13 +46,16 @@ void	parser(char **format, t_arg *arg, va_list args, int *j)
 
 void	print_char(t_arg *arg, va_list args)
 {
+    int c = va_arg(args, unsigned int);
+    if (none(arg) && (arg->counter += 1) && (write(1, &c, 1)))
+        return ;
 	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
 			&& arg->width > 1 && (--(arg->width)) && (++(arg->counter)))
 		ft_putchar('0');
 	while (!arg->minus && arg->width > 1 &&
 			arg->width-- && (++(arg->counter)))
 		ft_putchar(' ');
-	ft_putchar(va_arg(args, unsigned int));
+	ft_putchar(c);
 	++(arg->counter);
 	while (arg->minus && arg->width > 1 &&
 			arg->width-- && (++(arg->counter)))
@@ -63,6 +68,8 @@ void	print_string(t_arg *arg)
 
 	if (arg->s == NULL && (arg->malloc = 1))
 		arg->s = ft_strdup("(null)");
+    if (none(arg) && (arg->counter = ft_strlen(arg->s)) && (write(1, arg->s, ft_strlen(arg->s))))
+        return ;
 	size = (arg->acc_flag && arg->accuracy < ft_strlen(arg->s)) ?
 		arg->accuracy : ft_strlen(arg->s);
 	while (!arg->minus && arg->zero && (!arg->acc_flag && !arg->accuracy)
@@ -84,7 +91,6 @@ int		ft_printf(char *str, ...)
 	long long	counter;
 	va_list		args;
 	t_arg		array;
-
 	if (!ft_strcmp(str, "%"))
 		return (0);
 	j = 0;
